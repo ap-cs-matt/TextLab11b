@@ -13,10 +13,8 @@ public class TextLab11b_Matthew_Pearce {
 class Deck 
 {
 	private Card[] deck;
-	Card [] shuffledDeck = new Card[52];
 	private int size;
 	private int i = 0;
-	private int k = 0; //loop control for printing
 	private int r = 1; //use to assign card rank
 
 	public Deck() 
@@ -53,7 +51,6 @@ class Deck
 			  i++;
 			  r++;
 		  }	 	
-		//Shuffle(deck);
 	}
 	  
 	 public String determineRank(int r){
@@ -78,74 +75,25 @@ class Deck
 		 default: return "Ace";
 		 }
 	 }
-	 	 
-	 /*private void Shuffle(Card[] stDeck){
-		 
-		 int i = 0; //loop
-		 
-		 //creates duplicate array
-		 int k = 0; //loop for duplicating deck
-		 Card[] Shuffled = new Card[52];
-		 while (k < 52){
-			 Shuffled[k] = stDeck[k];
-			 k++;
-		 }
-		 //////////////
-		 
-		 while (i < 1000){
-			 
-			 int a = (int) Math.random() * 52;
-			 int b = (int) Math.random() * 52;
-			 int tempA = a;
-			 int tempB = b;
-			 
-			 Shuffled[a] = Shuffled[tempB];
-			 Shuffled[b] = Shuffled[tempA];
-			 i++;
-		 } 
-		 System.out.println(shuffledDeck);
-		 //return Shuffled;
-	 }*/
-	 
-	 private void Shuffle(Card[] stDeck){
+	 	  
+	 private void Shuffle(Card[] ogDeck){
 		 
 		//creates duplicate array
 		 int k = 0; //loop for duplicating deck
 		 Card[] Shuffled = new Card[52];
 		 while (k < 52){
-			 Shuffled[k] = stDeck[k];
+			 Shuffled[k] = ogDeck[k];
 			 k++;
 		 }
-		 
-		 int i = 0;
-		 for (Card shuffledCard: Shuffled)
-			    System.out.print(shuffledCard + "  ");
 	 }
 	 
 	 public String toString(){
 		  
-		  String blank = "";
-		  
+		  String printOut = "";
 		  for (Card i: deck)
-			  System.out.println(deck[k]);
-		 
+			  printOut += i + "\n";
 		  
-		  /*while (k < size){
-			  System.out.println(deck[k]);
-			  
-			  k++;
-		  }*/
-		  
-		  k = 0;
-		  
-		  System.out.println("\n\n");
-		  while (k < size){
-			  System.out.println(shuffledDeck[k]);
-			  
-			  k++;
-		  }
-		  
-		  return blank;
+		  return printOut;
 	  }
 }
 
@@ -162,7 +110,7 @@ class Card
 		pointValue = findPointValue(rank);     
 	}
 	
-	public int findPointValue(String rank){
+	private int findPointValue(String rank){
 		String modRank = rank.toLowerCase();   //lower cases inputed rank
 		
 			//using a switch to make changing point values very easy if needed in future
@@ -184,7 +132,6 @@ class Card
 		}
 	
 	public String toString(){
-	
 		return "[" + suit + ", " + rank + ", " + pointValue + "]";
 	}	
 }
