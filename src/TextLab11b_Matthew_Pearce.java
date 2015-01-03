@@ -3,17 +3,17 @@ public class TextLab11b_Matthew_Pearce {
 
 	public static void main(String args[])
 	{
-		System.out.println("Lab11bst.JAVA");
-		System.out.println();     
-      Deck deck = new Deck();
-      System.out.println(deck);
+		System.out.println("Lab11bst.JAVA\n");     
+      
+		Deck deck = new Deck();
+        System.out.println(deck);   
 	}
 }
-
 
 class Deck 
 {
 	private Card[] deck;
+	Card [] shuffledDeck = new Card[52];
 	private int size;
 	private int i = 0;
 	private int k = 0; //loop control for printing
@@ -24,8 +24,8 @@ class Deck
       size = 52;
 	  deck = new Card[size];
 	  Card tempCard;
-		  
-		  while (r <= 13){
+	  
+	  	while (r <= 13){
 			  tempCard = new Card("Clubs",determineRank(r));
 			  deck[i] = tempCard;
 			  
@@ -52,7 +52,8 @@ class Deck
 			  
 			  i++;
 			  r++;
-		  }	 
+		  }	 	
+		//Shuffle(deck);
 	}
 	  
 	 public String determineRank(int r){
@@ -77,14 +78,73 @@ class Deck
 		 default: return "Ace";
 		 }
 	 }
+	 	 
+	 /*private void Shuffle(Card[] stDeck){
+		 
+		 int i = 0; //loop
+		 
+		 //creates duplicate array
+		 int k = 0; //loop for duplicating deck
+		 Card[] Shuffled = new Card[52];
+		 while (k < 52){
+			 Shuffled[k] = stDeck[k];
+			 k++;
+		 }
+		 //////////////
+		 
+		 while (i < 1000){
+			 
+			 int a = (int) Math.random() * 52;
+			 int b = (int) Math.random() * 52;
+			 int tempA = a;
+			 int tempB = b;
+			 
+			 Shuffled[a] = Shuffled[tempB];
+			 Shuffled[b] = Shuffled[tempA];
+			 i++;
+		 } 
+		 System.out.println(shuffledDeck);
+		 //return Shuffled;
+	 }*/
+	 
+	 private void Shuffle(Card[] stDeck){
+		 
+		//creates duplicate array
+		 int k = 0; //loop for duplicating deck
+		 Card[] Shuffled = new Card[52];
+		 while (k < 52){
+			 Shuffled[k] = stDeck[k];
+			 k++;
+		 }
+		 
+		 int i = 0;
+		 for (Card shuffledCard: Shuffled)
+			    System.out.print(shuffledCard + "  ");
+	 }
 	 
 	 public String toString(){
 		  
 		  String blank = "";
-		  while (k < size){
+		  
+		  for (Card i: deck)
 			  System.out.println(deck[k]);
+		 
+		  
+		  /*while (k < size){
+			  System.out.println(deck[k]);
+			  
+			  k++;
+		  }*/
+		  
+		  k = 0;
+		  
+		  System.out.println("\n\n");
+		  while (k < size){
+			  System.out.println(shuffledDeck[k]);
+			  
 			  k++;
 		  }
+		  
 		  return blank;
 	  }
 }
@@ -101,7 +161,6 @@ class Card
 		this.rank = rank;
 		pointValue = findPointValue(rank);     
 	}
-	
 	
 	public int findPointValue(String rank){
 		String modRank = rank.toLowerCase();   //lower cases inputed rank
@@ -127,6 +186,5 @@ class Card
 	public String toString(){
 	
 		return "[" + suit + ", " + rank + ", " + pointValue + "]";
-	}
-	
+	}	
 }
