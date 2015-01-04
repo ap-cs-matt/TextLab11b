@@ -24,25 +24,19 @@ class Deck
 	{
       size = 52;
 	  deck = new Card[size];
-	  Card tempCard;
 	  while (r <= 52)
 	  {
 	  	if (r <= 13){
-			  tempCard = new Card("Clubs",determineRank(r));
-			  deck[i] = tempCard; 
-		  }
-	  	else if (r <= 26){ 
-			  tempCard = new Card("Spades",determineRank(r));
-			  deck[i] = tempCard;  
-		  }
+	  		deck[i] = new Card("Clubs",determineRank(r));}
+	  	
+	  	else if (r <= 26){  
+			  deck[i] = new Card("Spades",determineRank(r));}
+	  	
 	  	else if (r <= 39){ 
-			  tempCard = new Card("Hearts",determineRank(r));
-			  deck[i] = tempCard; 
-		  }
+			  deck[i] = new Card("Hearts",determineRank(r));}
+	  	
 	  	else if (r <= 52){ 
-			  tempCard = new Card("Diamonds",determineRank(r));
-			  deck[i] = tempCard;  
-		  }	 
+			  deck[i] = new Card("Diamonds",determineRank(r));}	 
 	  	i++;
 		r++;
 	  }
@@ -68,12 +62,12 @@ class Deck
 		 case 10: return "Jack";
 		 case 11: return "Queen";
 		 case 12: return "King";
-		 default: return "Ace";
+		 default: return "Ace";  //if r = 13
 		 }	 
 	 }
 	 	  
-	 /*
-	 //shuffle method 1
+	 /* 
+	 //shuffle method 1 							need to uncomment line in main method
 	   private void Shuffle(Card[] ogDeck){
 		 
 		//creates duplicate array
@@ -105,7 +99,8 @@ class Deck
 			 i++;
 		 } 
 	 }*/
-	 
+	
+	 //shuffle method 2
 	 private void Shuffle(Card[] ogDeck){
 			  
 			 int i = 0;	//loop to print one card
