@@ -1,18 +1,21 @@
+import java.util.Arrays;
+
 
 public class TextLab11b_Matthew_Pearce {
 
 	public static void main(String args[])
 	{
-		System.out.println("Lab11bst.JAVA\n");     
+		System.out.println("Lab11b 100 Point Version Matthew Pearce\n");     
       
 		Deck deck = new Deck();
-        System.out.println(deck);   
+        //System.out.println(deck);   //second shuffle method automatically prints out / uncomment this line to use original shuffle method
 	}
 }
 
 class Deck 
 {
 	private Card[] deck;
+	private Card[] Shuffled;
 	private int size;
 	private int i = 0;
 	private int r = 1; //use to assign card rank
@@ -22,42 +25,35 @@ class Deck
       size = 52;
 	  deck = new Card[size];
 	  Card tempCard;
-	  
-	  	while (r <= 13){
+	  while (r <= 52)
+	  {
+	  	if (r <= 13){
 			  tempCard = new Card("Clubs",determineRank(r));
-			  deck[i] = tempCard;
-			  
-			  i++;
-			  r++;
+			  deck[i] = tempCard; 
 		  }
-		  while (r <= 26){ 
+	  	else if (r <= 26){ 
 			  tempCard = new Card("Spades",determineRank(r));
-			  deck[i] = tempCard;
-			  
-			  i++;
-			  r++;
+			  deck[i] = tempCard;  
 		  }
-		  while (r <= 39){ 
+	  	else if (r <= 39){ 
 			  tempCard = new Card("Hearts",determineRank(r));
-			  deck[i] = tempCard;
-			  
-			  i++;
-			  r++;
+			  deck[i] = tempCard; 
 		  }
-		  while (r <= 52){ 
+	  	else if (r <= 52){ 
 			  tempCard = new Card("Diamonds",determineRank(r));
-			  deck[i] = tempCard;
-			  
-			  i++;
-			  r++;
-		  }	 	
+			  deck[i] = tempCard;  
+		  }	 
+	  	i++;
+		r++;
+	  }
+		  Shuffle(deck);
 	}
 	  
-	 public String determineRank(int r){
+	 private String determineRank(int r){
 		
 		 while (r > 13){
-			 r -= 13;
-		 }					//makes r in range of 1-13
+			 r -= 13;		//makes r in range of 1-13
+		 }					
 		 
 		 switch (r){
 		 case 1:  return "Two";
@@ -73,24 +69,77 @@ class Deck
 		 case 11: return "Queen";
 		 case 12: return "King";
 		 default: return "Ace";
-		 }
+		 }	 
 	 }
 	 	  
-	 private void Shuffle(Card[] ogDeck){
+	 /*
+	 //shuffle method 1
+	   private void Shuffle(Card[] ogDeck){
 		 
 		//creates duplicate array
 		 int k = 0; //loop for duplicating deck
-		 Card[] Shuffled = new Card[52];
-		 while (k < 52){
+		 Shuffled = new Card[52];
+		 while (k < ogDeck.length){
 			 Shuffled[k] = ogDeck[k];
 			 k++;
 		 }
+		 ///////////
+		 
+		 int i = 0;
+		 int a = 0;
+		 int b = 0;
+		 Card cardB;
+		 Card cardA;
+
+		 while (i < 1000){
+			
+			 a = (int) (Math.random() * 52);
+			 cardA = Shuffled[a];
+			 
+			 b = (int) (Math.random() * 52);
+			 cardB = Shuffled[b];
+			 
+			 Shuffled[a] = cardB;
+			 Shuffled[b] = cardA;			 
+			 
+			 i++;
+		 } 
+	 }*/
+	 
+	 private void Shuffle(Card[] ogDeck){
+			  
+			 int i = 0;	//loop to print one card
+			 int z = 0;  //random values
+			 int m = 0;	//to make sure card hasnt already been printed
+			 
+			 int[] printCheck = new int[52];		//creates array to store locations of cards already printed to ensure no duplicates are printed
+			 while (i < 52)  //prints 52 cards one at a time
+			 {
+				 z = (int) (Math.random() * 52); 	//puts in initial random value into check array
+				 printCheck[i] = z;		
+				 
+				 while (m < 52)			//makes sure no duplicates have been printed 
+				 {
+					 if (z == printCheck[m]){
+						 z = (int) (Math.random() * 52);
+						 //System.out.println("error!");  // to see how many times it takes for a non printed card to be discovered
+						 m = 0;
+					 } 
+					 m++;
+				 }
+				 
+				 m=0;
+				 printCheck[i] = z;			// puts in card number that has been sucesfully printed after checks
+				 
+				 System.out.println(deck[z]);		//prints all card information
+				 i++;
+			 }	 	 
 	 }
 	 
 	 public String toString(){
 		  
 		  String printOut = "";
-		  for (Card i: deck)
+		  for (Card i: Shuffled)
 			  printOut += i + "\n";
 		  
 		  return printOut;
@@ -135,3 +184,4 @@ class Card
 		return "[" + suit + ", " + rank + ", " + pointValue + "]";
 	}	
 }
+
