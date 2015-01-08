@@ -8,7 +8,7 @@ public class TextLab11b_Matthew_Pearce {
 		System.out.println("Lab11b 100 Point Version Matthew Pearce\n");     
       
 		Deck deck = new Deck();
-        //System.out.println(deck);   //second shuffle method automatically prints out / uncomment this line to use original shuffle method
+        System.out.println(deck);   //second shuffle method automatically prints out / uncomment this line to use original shuffle method
 	}
 }
 
@@ -66,18 +66,9 @@ class Deck
 		 }	 
 	 }
 	 	  
-	 /* 
-	 //shuffle method 1 							need to uncomment line in main method
+	 
+	 /*/shuffle method 1 							need to uncomment line in main method
 	   private void Shuffle(Card[] ogDeck){
-		 
-		//creates duplicate array
-		 int k = 0; //loop for duplicating deck
-		 Shuffled = new Card[52];
-		 while (k < ogDeck.length){
-			 Shuffled[k] = ogDeck[k];
-			 k++;
-		 }
-		 ///////////
 		 
 		 int i = 0;
 		 int a = 0;
@@ -88,22 +79,77 @@ class Deck
 		 while (i < 1000){
 			
 			 a = (int) (Math.random() * 52);
-			 cardA = Shuffled[a];
+			 cardA = deck[a];
 			 
 			 b = (int) (Math.random() * 52);
-			 cardB = Shuffled[b];
+			 cardB = deck[b];
 			 
-			 Shuffled[a] = cardB;
-			 Shuffled[b] = cardA;			 
+			 deck[a] = cardB;
+			 deck[b] = cardA;			 
 			 
 			 i++;
 		 } 
 	 }*/
 	
-	 //shuffle method 2
+	 
+	 //Shuffle method 2
+	 private void Shuffle(Card[] ogDeck){
+		 Card[] tempDeck = new Card[ogDeck.length];
+		 int[] checkStore = new int[ogDeck.length];
+		 
+		 int i = 0;
+		 for (Card temp: ogDeck){
+			 tempDeck[i] = ogDeck[i];
+			 i++; 
+		 }
+		 
+		 int m = 0;
+		 int z = 0;
+		 int k = 0;
+		 int r = 0;
+		 
+		 while (k < deck.length){
+			 
+			 z = (int) (Math.random() * 52);
+			 checkStore[k] = z;
+			 
+			 while ( r < 52){
+				 
+			 }
+			 if (z == checkStore[k]){
+				 
+				 
+			 }
+				 
+				 
+		 }
+		 
+		 
+		 
+		 /*for (Card rand: tempDeck){
+			  
+				 z = (int) (Math.random() * 52); 	//puts in initial random value into check array
+				 checkStore[k] = z;		
+				 
+				 while (m < 52)			//makes sure no duplicates have been sotred in the same place 
+				 {
+					 if (z == checkStore[m]){
+						 z = (int) (Math.random() * 52);
+						 m = 0;
+					 } 
+					 m++;
+				 }
+				 m=0; 
+			 } 
+		 }*/
+	 
+	 }
+	 /*/shuffle method 3 prints out in random order need to comment out print command in main method
 	 private void Shuffle(Card[] ogDeck){
 			  
-			 int i = 0;	//loop to print one card
+			 
+		 
+		 	 int i = 0;	//loop to print one card
 			 int z = 0;  //random values
 			 int m = 0;	//to make sure card hasnt already been printed
 			 
@@ -129,12 +175,12 @@ class Deck
 				 System.out.println(deck[z]);		//prints all card information
 				 i++;
 			 }	 	 
-	 }
+	 }*/
 	 
 	 public String toString(){
 		  
 		  String printOut = "";
-		  for (Card i: Shuffled)
+		  for (Card i: deck)
 			  printOut += i + "\n";
 		  
 		  return printOut;
