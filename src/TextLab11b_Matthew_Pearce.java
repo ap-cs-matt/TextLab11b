@@ -8,7 +8,7 @@ public class TextLab11b_Matthew_Pearce {
 		System.out.println("Lab11b 100 Point Version Matthew Pearce\n");     
       
 		Deck deck = new Deck();
-        System.out.println(deck);   //second shuffle method automatically prints out / uncomment this line to use original shuffle method
+        System.out.println(deck);   
 	}
 }
 
@@ -67,7 +67,7 @@ class Deck
 	 }
 	 	  
 	 
-	 /*/shuffle method 1 							need to uncomment line in main method
+	 /*/shuffle method 1 							
 	   private void Shuffle(Card[] ogDeck){
 		 
 		 int i = 0;
@@ -97,85 +97,40 @@ class Deck
 		 Card[] tempDeck = new Card[ogDeck.length];
 		 int[] checkStore = new int[ogDeck.length];
 		 
+		 //creates temporary copy of deck array
 		 int i = 0;
 		 for (Card temp: ogDeck){
 			 tempDeck[i] = ogDeck[i];
 			 i++; 
 		 }
 		 
-		 int m = 0;
-		 int z = 0;
+		 //reasigns the values to random locations
+		 i = 0;
+		 int random = 0;
 		 int k = 0;
-		 int r = 0;
 		 
-		 while (k < deck.length){
+		 while (k < 52){
 			 
-			 z = (int) (Math.random() * 52);
-			 checkStore[k] = z;
-			 
-			 while ( r < 52){
+				 random = (int) (Math.random() * 52);
+				 checkStore[k] = random;
 				 
+				 while (i < 52){ 
+					 
+					 if (i == k ); //does nothing skips the else statement to prevent and endless loop
+					 
+					 else if (random == checkStore[i])// tests if value has been used at any location in the check array
+					 {
+						 random = (int) (Math.random() * 52);
+						 checkStore[k] = random;
+						 i = -1;// as i increaces by one to make while loop work but i still want it to check location 0
+					 }
+					 i++; 
 			 }
-			 if (z == checkStore[k]){
-				 
-				 
-			 }
-				 
-				 
+			 i = 0; // resets i
+			 deck[random] = tempDeck[k];  //reasigns deck card in location from a copy so all values get printed and none are missed
+			 k++;
 		 }
-		 
-		 
-		 
-		 /*for (Card rand: tempDeck){
-			  
-				 z = (int) (Math.random() * 52); 	//puts in initial random value into check array
-				 checkStore[k] = z;		
-				 
-				 while (m < 52)			//makes sure no duplicates have been sotred in the same place 
-				 {
-					 if (z == checkStore[m]){
-						 z = (int) (Math.random() * 52);
-						 m = 0;
-					 } 
-					 m++;
-				 }
-				 m=0; 
-			 } 
-		 }*/
-	 
 	 }
-	 /*/shuffle method 3 prints out in random order need to comment out print command in main method
-	 private void Shuffle(Card[] ogDeck){
-			  
-			 
-		 
-		 	 int i = 0;	//loop to print one card
-			 int z = 0;  //random values
-			 int m = 0;	//to make sure card hasnt already been printed
-			 
-			 int[] printCheck = new int[52];		//creates array to store locations of cards already printed to ensure no duplicates are printed
-			 while (i < 52)  //prints 52 cards one at a time
-			 {
-				 z = (int) (Math.random() * 52); 	//puts in initial random value into check array
-				 printCheck[i] = z;		
-				 
-				 while (m < 52)			//makes sure no duplicates have been printed 
-				 {
-					 if (z == printCheck[m]){
-						 z = (int) (Math.random() * 52);
-						 //System.out.println("error!");  // to see how many times it takes for a non printed card to be discovered
-						 m = 0;
-					 } 
-					 m++;
-				 }
-				 
-				 m=0;
-				 printCheck[i] = z;			// puts in card number that has been sucesfully printed after checks
-				 
-				 System.out.println(deck[z]);		//prints all card information
-				 i++;
-			 }	 	 
-	 }*/
 	 
 	 public String toString(){
 		  
